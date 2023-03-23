@@ -27,6 +27,7 @@ fun <T> FinitePicker(
     optionToStringMapper: (T) -> String = { it.toString() },
     visibleItemsCount: Int = 3,//should be odd number greater than 1,
     optionTextStyle: TextStyle = TextStyle(color = Color.Black, fontSize = 20.sp),
+    inactiveOptionsColor: Color = Color(255, 255, 255, 255/2),
     onOptionChanged: (T) -> Unit,
 ) {
     require(visibleItemsCount > 1 && visibleItemsCount % 2 == 1 && options.size > visibleItemsCount)
@@ -57,7 +58,7 @@ fun <T> FinitePicker(
                 .fillMaxWidth()
                 .fillMaxHeight((visibleItemsCount - 1f) / (2f * visibleItemsCount))
                 .drawBehind {
-                    drawRect(Color.White.copy(alpha = 0.5f))
+                    drawRect(inactiveOptionsColor)
                 }
         )
         Box(
@@ -66,7 +67,7 @@ fun <T> FinitePicker(
                 .fillMaxWidth()
                 .fillMaxHeight((visibleItemsCount - 1f) / (2f * visibleItemsCount))
                 .drawBehind {
-                    drawRect(Color.White.copy(alpha = 0.5f))
+                    drawRect(inactiveOptionsColor)
                 }
         )
     }
